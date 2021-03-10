@@ -720,8 +720,8 @@ body.offcanvas {
     bottom: 10px;
     left: 10px;
     right: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    opacity: 0;
+    background: #ac898985;
+    opacity: 10;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
     transition: 0.3s; }
@@ -1003,7 +1003,7 @@ body.offcanvas {
   color: #fff;
   border: 2px solid #ac8989; }
   .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background: #ac898982 !important;
+    background: #ac8989 !important;
     border-color: #ac8989 !important; }
   .btn-primary.btn-outline {
     background: transparent;
