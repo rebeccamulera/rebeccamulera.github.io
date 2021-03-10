@@ -957,19 +957,19 @@ body.offcanvas {
         -ms-border-radius: 2px;
         border-radius: 2px; }
       .pagination li a:hover, .pagination li a:focus {
-        background: #FFC300;
+        background: #ac8989;
         color: #fff;
-        border: 1px solid #FFC300; }
+        border: 1px solid #ac8989; }
       @media screen and (max-width: 768px) {
         .pagination li a {
           padding: 7px 15px; } }
     .pagination li.active a {
-      background: #FFC300;
-      border: 1px solid #FFC300 !important; }
+      background: #ac8989;
+      border: 1px solid #ac8989 !important; }
       .pagination li.active a:hover, .pagination li.active a:focus {
-        background: #FFC300;
+        background: #ac8989;
         color: #fff;
-        border: 1px solid #FFC300 !important; }
+        border: 1px solid #ac8989 important; }
 
 .btn {
   margin-right: 4px;
