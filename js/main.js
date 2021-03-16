@@ -1,35 +1,35 @@
-;(function () {
-	
+; (function () {
+
 	'use strict';
 
 
 
 	var isMobile = {
-		Android: function() {
+		Android: function () {
 			return navigator.userAgent.match(/Android/i);
 		},
-			BlackBerry: function() {
+		BlackBerry: function () {
 			return navigator.userAgent.match(/BlackBerry/i);
 		},
-			iOS: function() {
+		iOS: function () {
 			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
 		},
-			Opera: function() {
+		Opera: function () {
 			return navigator.userAgent.match(/Opera Mini/i);
 		},
-			Windows: function() {
+		Windows: function () {
 			return navigator.userAgent.match(/IEMobile/i);
 		},
-			any: function() {
+		any: function () {
 			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
 		}
 	};
 
-	var fullHeight = function() {
+	var fullHeight = function () {
 
-		if ( !isMobile.any() ) {
+		if (!isMobile.any()) {
 			$('.js-fullheight').css('height', $(window).height());
-			$(window).resize(function(){
+			$(window).resize(function () {
 				$('.js-fullheight').css('height', $(window).height());
 			});
 		}
@@ -37,77 +37,77 @@
 	};
 
 
-	var counter = function() {
+	var counter = function () {
 		$('.js-counter').countTo({
-			 formatter: function (value, options) {
-	      return value.toFixed(options.decimals);
-	    },
+			formatter: function (value, options) {
+				return value.toFixed(options.decimals);
+			},
 		});
 	};
 
 
-	var counterWayPoint = function() {
-		if ($('#colorlib-counter').length > 0 ) {
-			$('#colorlib-counter').waypoint( function( direction ) {
-										
-				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( counter , 400);					
+	var counterWayPoint = function () {
+		if ($('#colorlib-counter').length > 0) {
+			$('#colorlib-counter').waypoint(function (direction) {
+
+				if (direction === 'down' && !$(this.element).hasClass('animated')) {
+					setTimeout(counter, 400);
 					$(this.element).addClass('animated');
 				}
-			} , { offset: '90%' } );
+			}, { offset: '90%' });
 		}
 	};
 
 	// Animations
-	var contentWayPoint = function() {
+	var contentWayPoint = function () {
 		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
+		$('.animate-box').waypoint(function (direction) {
 
-			if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-				
+			if (direction === 'down' && !$(this.element).hasClass('animated')) {
+
 				i++;
 
 				$(this.element).addClass('item-animate');
-				setTimeout(function(){
+				setTimeout(function () {
 
-					$('body .animate-box.item-animate').each(function(k){
+					$('body .animate-box.item-animate').each(function (k) {
 						var el = $(this);
-						setTimeout( function () {
+						setTimeout(function () {
 							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
+							if (effect === 'fadeIn') {
 								el.addClass('fadeIn animated');
-							} else if ( effect === 'fadeInLeft') {
+							} else if (effect === 'fadeInLeft') {
 								el.addClass('fadeInLeft animated');
-							} else if ( effect === 'fadeInRight') {
+							} else if (effect === 'fadeInRight') {
 								el.addClass('fadeInRight animated');
 							} else {
 								el.addClass('fadeInUp animated');
 							}
 
 							el.removeClass('item-animate');
-						},  k * 200, 'easeInOutExpo' );
+						}, k * 200, 'easeInOutExpo');
 					});
-					
+
 				}, 100);
-				
+
 			}
 
-		} , { offset: '85%' } );
+		}, { offset: '85%' });
 	};
 
 
-	var burgerMenu = function() {
+	var burgerMenu = function () {
 
-		$('.js-colorlib-nav-toggle').on('click', function(event){
+		$('.js-colorlib-nav-toggle').on('click', function (event) {
 			event.preventDefault();
 			var $this = $(this);
 
 			if ($('body').hasClass('offcanvas')) {
 				$this.removeClass('active');
-				$('body').removeClass('offcanvas');	
+				$('body').removeClass('offcanvas');
 			} else {
 				$this.addClass('active');
-				$('body').addClass('offcanvas');	
+				$('body').addClass('offcanvas');
 			}
 		});
 
@@ -116,61 +116,107 @@
 	};
 
 	// Click outside of offcanvass
-	var mobileMenuOutsideClick = function() {
+	var mobileMenuOutsideClick = function () {
 
 		$(document).click(function (e) {
-	    var container = $("#colorlib-aside, .js-colorlib-nav-toggle");
-	    if (!container.is(e.target) && container.has(e.target).length === 0) {
+			var container = $("#colorlib-aside, .js-colorlib-nav-toggle");
+			if (!container.is(e.target) && container.has(e.target).length === 0) {
 
-	    	if ( $('body').hasClass('offcanvas') ) {
+				if ($('body').hasClass('offcanvas')) {
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
-			
-	    	}
-	    	
-	    }
+					$('body').removeClass('offcanvas');
+					$('.js-colorlib-nav-toggle').removeClass('active');
+
+				}
+
+			}
 		});
 
-		$(window).scroll(function(){
-			if ( $('body').hasClass('offcanvas') ) {
+		$(window).scroll(function () {
+			if ($('body').hasClass('offcanvas')) {
 
-    			$('body').removeClass('offcanvas');
-    			$('.js-colorlib-nav-toggle').removeClass('active');
-			
-	    	}
+				$('body').removeClass('offcanvas');
+				$('.js-colorlib-nav-toggle').removeClass('active');
+
+			}
 		});
 
 	};
 
-	var sliderMain = function() {
-		
-	  	$('#colorlib-hero .flexslider').flexslider({
+	var becca_copyonclick = function () {
+
+		$(document).ready(function () {
+
+			// Add class to mailto link
+			// Needed to separate the disabling of the default action AND copy email to clipboard
+			$('a[href^=mailto]').addClass('mailto-link');
+
+			var mailto = $('.mailto-link');
+			var messageCopy = 'Click to copy email address';
+			var messageSuccess = 'Email address copied';
+
+			mailto.append('<span class="mailto-message"></span>');
+			$('.mailto-message').append(messageCopy);
+
+			// Disable opening your email client. yuk.
+			$('a[href^=mailto]').click(function () {
+				return false;
+			})
+
+			// On click, get href and remove 'mailto:' from value
+			// Store email address in a variable.
+			mailto.click(function () {
+				var href = $(this).attr('href');
+				var email = href.replace('mailto:', '');
+				copyToClipboard(email);
+				$('.mailto-message').empty().append(messageSuccess);
+				setTimeout(function () {
+					$('.mailto-message').empty().append(messageCopy);
+				}, 2000);
+			});
+
+		});
+
+		// Grabbed this from Stack Overflow.
+		// Copies the email variable to clipboard
+		function copyToClipboard(text) {
+			var dummy = document.createElement("input");
+			document.body.appendChild(dummy);
+			dummy.setAttribute('value', text);
+			dummy.select();
+			document.execCommand('copy');
+			document.body.removeChild(dummy);
+		}
+	}
+
+	var sliderMain = function () {
+
+		$('#colorlib-hero .flexslider').flexslider({
 			animation: "fade",
 			slideshowSpeed: 5000,
 			directionNav: true,
-			start: function(){
-				setTimeout(function(){
+			start: function () {
+				setTimeout(function () {
 					$('.slider-text').removeClass('animated fadeInUp');
 					$('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp');
 				}, 500);
 			},
-			before: function(){
-				setTimeout(function(){
+			before: function () {
+				setTimeout(function () {
 					$('.slider-text').removeClass('animated fadeInUp');
 					$('.flex-active-slide').find('.slider-text').addClass('animated fadeInUp');
 				}, 500);
 			}
 
-	  	});
+		});
 
 	};
 
-	var stickyFunction = function() {
+	var stickyFunction = function () {
 
 		var h = $('.image-content').outerHeight();
 
-		if ($(window).width() <= 992 ) {
+		if ($(window).width() <= 992) {
 			$("#sticky_item").trigger("sticky_kit:detach");
 		} else {
 			$('.sticky-parent').removeClass('stick-detach');
@@ -178,12 +224,12 @@
 			$("#sticky_item").trigger("sticky_kit:unstick");
 		}
 
-		$(window).resize(function(){
+		$(window).resize(function () {
 			var h = $('.image-content').outerHeight();
 			$('.sticky-parent').css('height', h);
 
 
-			if ($(window).width() <= 992 ) {
+			if ($(window).width() <= 992) {
 				$("#sticky_item").trigger("sticky_kit:detach");
 			} else {
 				$('.sticky-parent').removeClass('stick-detach');
@@ -192,9 +238,9 @@
 
 				$("#sticky_item").stick_in_parent();
 			}
-			
 
-			
+
+
 
 		});
 
@@ -204,26 +250,26 @@
 
 	};
 
-	var owlCrouselFeatureSlide = function() {
+	var owlCrouselFeatureSlide = function () {
 		$('.owl-carousel').owlCarousel({
 			animateOut: 'fadeOut',
-		   animateIn: 'fadeIn',
-		   autoplay: true,
-		   loop:true,
-		   margin:0,
-		   nav:true,
-		   dots: false,
-		   autoHeight: true,
-		   items: 1,
-		   navText: [
-		      "<i class='icon-arrow-left3 owl-direction'></i>",
-		      "<i class='icon-arrow-right3 owl-direction'></i>"
-	     	]
+			animateIn: 'fadeIn',
+			autoplay: true,
+			loop: true,
+			margin: 0,
+			nav: true,
+			dots: false,
+			autoHeight: true,
+			items: 1,
+			navText: [
+				"<i class='icon-arrow-left3 owl-direction'></i>",
+				"<i class='icon-arrow-right3 owl-direction'></i>"
+			]
 		})
 	};
 
 	// Document on load.
-	$(function(){
+	$(function () {
 		fullHeight();
 		counter();
 		counterWayPoint();
@@ -233,6 +279,7 @@
 		sliderMain();
 		stickyFunction();
 		owlCrouselFeatureSlide();
+		becca_copyonclick();
 	});
 
 
